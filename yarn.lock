@@ -1505,6 +1505,11 @@
     sudo-prompt "^9.0.0"
     wcwidth "^1.0.1"
 
+"@types/history@*":
+  version "4.7.9"
+  resolved "https://registry.yarnpkg.com/@types/history/-/history-4.7.9.tgz#1cfb6d60ef3822c589f18e70f8b12f9a28ce8724"
+  integrity sha512-MUc6zSmU3tEVnkQ78q0peeEjKWPUADMlC/t++2bI8WnAG2tvYRPIgHG8lWkXwqc8MsUF6Z2MOf+Mh5sazOmhiQ==
+
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@types/istanbul-lib-coverage/-/istanbul-lib-coverage-2.0.3.tgz#4ba8ddb720221f432e443bd5f9117fd22cfd4762"
@@ -1547,6 +1552,23 @@
   resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.63.53.tgz#776dc1b05d649cb41b05fdff06e41ab9066538ca"
   integrity sha512-hfUYHlfuy436viNct5uYNh2y40iWl1+iWhAQ18vzoKtyeW4WLNyccZf6OfkJdkqkHyH+bgvHLhbmnocpnQeKXg==
   dependencies:
+    "@types/react" "*"
+
+"@types/react-router-native@^5.1.1":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@types/react-router-native/-/react-router-native-5.1.1.tgz#61895122317c3a8149f321d0cb3266c85ca783da"
+  integrity sha512-b2Va/TINK1dP+nFS9aYM7lCpWu/Mc1G4UymYRzljMC2kkYeNK1ZH0ULc2uUWTFR6ZPyJMVpod63BtooKUZgqAg==
+  dependencies:
+    "@types/history" "*"
+    "@types/react" "*"
+    "@types/react-router" "*"
+
+"@types/react-router@*":
+  version "5.1.16"
+  resolved "https://registry.yarnpkg.com/@types/react-router/-/react-router-5.1.16.tgz#f3ba045fb96634e38b21531c482f9aeb37608a99"
+  integrity sha512-8d7nR/fNSqlTFGHti0R3F9WwIertOaaA1UEB8/jr5l5mDMOs4CidEgvvYMw4ivqrBK+vtVLxyTj2P+Pr/dtgzg==
+  dependencies:
+    "@types/history" "*"
     "@types/react" "*"
 
 "@types/react@*":
