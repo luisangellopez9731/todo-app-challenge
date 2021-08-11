@@ -23,6 +23,8 @@ yarn android
 
 To run it in ios is basically the same, just change the word **android** in the commands for **ios**.
 
+**NOTE: I'm not sure about this, but maybe you need to install expo cli before doing the steps described here, here is the documentation for that: [expo-cli](https://docs.expo.dev/get-started/installation/)**
+
 ## Libraries used
 
 - [React navigation](https://reactnavigation.org/): for the routing screen feature.
