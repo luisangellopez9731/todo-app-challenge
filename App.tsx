@@ -1,33 +1,40 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { NativeRouter, Route, Link } from "react-router-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import * as eva from "@eva-design/eva";
+import { ApplicationProvider } from "@ui-kitten/components";
 import { Home, AddTask } from "@/screens";
+import { View } from "react-native";
+import { OverflowMenuProvider } from "react-navigation-header-buttons";
+
+export type RootStackParamList = {
+  Home: undefined;
+  AddTask: undefined;
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
-    <NativeRouter>
-      <View style={styles.container}>
-        <View>
-          <Link to="/" underlayColor="#f0f4f7">
-            <Text>Home</Text>
-          </Link>
-          <Link to="/add-task" underlayColor="#f0f4f7">
-            <Text>Add Task</Text>
-          </Link>
-        </View>
-
-        <Route exact path="/" component={Home} />
-        <Route path="/add-task" component={AddTask} />
+    <ApplicationProvider {...eva} theme={eva.light}>
+      <View style={{ height: "100%" }}>
+        <NavigationContainer>
+          <OverflowMenuProvider>
+            <Stack.Navigator>
+              <Stack.Screen
+                name="Home"
+                component={Home}
+                options={{ title: "To-Do App" }}
+              />
+              <Stack.Screen
+                name="AddTask"
+                component={AddTask}
+                options={{ title: "Add Task" }}
+              />
+            </Stack.Navigator>
+          </OverflowMenuProvider>
+        </NavigationContainer>
       </View>
-    </NativeRouter>
+    </ApplicationProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
