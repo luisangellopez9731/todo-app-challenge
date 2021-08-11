@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-
 import { Button as ButtonKitten, ButtonProps } from "@ui-kitten/components";
 
 const style = {

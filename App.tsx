@@ -1,11 +1,11 @@
 import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import * as eva from "@eva-design/eva";
-import { ApplicationProvider } from "@ui-kitten/components";
-import { Home, AddTask } from "@/screens";
 import { View } from "react-native";
+import * as eva from "@eva-design/eva";
+import { Home, AddTask } from "@/screens";
+import { ApplicationProvider } from "@ui-kitten/components";
+import { NavigationContainer } from "@react-navigation/native";
 import { OverflowMenuProvider } from "react-navigation-header-buttons";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 export type RootStackParamList = {
   Home: undefined;

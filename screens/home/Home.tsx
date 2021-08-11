@@ -1,25 +1,12 @@
+import { Button } from "@/components";
+import { TodoList } from "./todo-list";
+import { HeaderItems, IoniconsHeaderButton } from "./HeaderItems";
 import React, { FC, useState } from "react";
-// import { Button } from "react-native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { useFocusEffect } from "@react-navigation/native";
-import { TodoList, Button } from "@/components";
 import styled from "styled-components/native";
-// import { Button } from "@ui-kitten/components";
-
-import {
-  HeaderButtons,
-  HeaderButton,
-  Item,
-  HiddenItem,
-  OverflowMenu,
-} from "react-navigation-header-buttons";
 import { Ionicons } from "@expo/vector-icons";
-
-const IoniconsHeaderButton = (props) => (
-  // the `props` here come from <Item ... />
-  // you may access them and pass something else to `HeaderButton` if you like
-  <HeaderButton IconComponent={Ionicons} iconSize={23} {...props} />
-);
+import { useFocusEffect } from "@react-navigation/native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { HeaderButtons, HeaderButton } from "react-navigation-header-buttons";
 
 export const Home: FC<NativeStackScreenProps<any>> = ({ navigation }) => {
   const [isFocused, setIsFocused] = useState(true);
@@ -27,25 +14,7 @@ export const Home: FC<NativeStackScreenProps<any>> = ({ navigation }) => {
   useFocusEffect(
     React.useCallback(() => {
       navigation.setOptions({
-        headerRight: () => (
-          <HeaderButtons HeaderButtonComponent={IoniconsHeaderButton}>
-            <Item
-              title="search"
-              iconName="ios-search"
-              onPress={() => alert("search")}
-            />
-            <Item
-              title="Notifications"
-              iconName="notifications-outline"
-              onPress={() => alert("Notifications")}
-            />
-            <Item
-              title="Menu"
-              iconName="menu-outline"
-              onPress={() => alert("Menu")}
-            />
-          </HeaderButtons>
-        ),
+        headerRight: () => <HeaderItems />,
       });
       setIsFocused(true);
       return () => {

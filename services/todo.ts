@@ -1,8 +1,8 @@
+import uuid from "react-native-uuid";
 import { Todo, InsertTodo, TodoService } from "@/entities";
 import { getItemAsync, setItemAsync } from "expo-secure-store";
-import uuid from "react-native-uuid";
 
-// setItemAsync("todos", JSON.stringify([]));
+// setItemAsync("todos", JSON.stringify([])); // To clear local storage
 
 async function getTodos(): Promise<Todo[]> {
   let todos = await getItemAsync("todos");

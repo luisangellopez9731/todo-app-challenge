@@ -8,14 +8,22 @@ type AddTaskScreenNavigationProp = NativeStackNavigationProp<
   "AddTask"
 >;
 
+const useAddTask = (navigation: any) => {
+  const onCreated = () => {
+    navigation.navigate("Home");
+  };
+
+  return {
+    onCreated,
+  };
+};
+
 type Props = {
   navigation: AddTaskScreenNavigationProp;
 };
 
 export const AddTask = ({ navigation }: Props) => {
-  const onCreated = () => {
-    navigation.navigate("Home");
-  };
+  const { onCreated } = useAddTask(navigation);
   return (
     <>
       <Form onCreated={onCreated} />

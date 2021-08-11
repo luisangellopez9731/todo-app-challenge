@@ -1,9 +1,18 @@
-import React, { useState, FC } from "react";
+import React, { FC } from "react";
 import { View } from "react-native";
+import { Header } from "@/components";
 import { todoService } from "@/services";
-import { useEffect } from "react";
-import { InsertTodo, Todo as TodoEntity, Todos } from "@/entities";
+import { useTodoList } from "./useTodoList";
 import { CheckBox, Text } from "@ui-kitten/components";
+import { InsertTodo, Todo as TodoEntity } from "@/entities";
+
+const CheckboxText: FC = ({ children }) => {
+  return (
+    <Text category="h6" style={{ marginLeft: 8 }}>
+      {children as string}
+    </Text>
+  );
+};
 
 export interface TodoProps extends TodoEntity {
   onChanged: () => void;
@@ -14,40 +23,20 @@ export const Todo: FC<TodoProps> = ({ id, title, completed, onChanged }) => {
     await todoService.update(id, { completed: value } as Partial<InsertTodo>);
     onChanged();
   };
+
   return (
     <CheckBox
       style={{ marginBottom: 16 }}
       checked={completed}
-      onChange={(value) => onChange(value)}
+      onChange={onChange}
     >
-      {() => (
-        <Text category="h6" style={{ marginLeft: 8 }}>
-          {title}
-        </Text>
-      )}
+      <CheckboxText>{title}</CheckboxText>
     </CheckBox>
   );
 };
 
 export const TodoList = () => {
-  const [todos, setTodos] = useState<Todos>({ completed: [], pending: [] });
-  const [loading, setLoading] = useState(true);
-
-  const loadData = async () => {
-    const todos = await todoService.getAll();
-    // console.warn(todos)
-    setTodos(todos);
-  };
-  useEffect(() => {
-    loadData().then(() => {
-      setLoading(false);
-    });
-  }, []);
-
-  const todoChanged = () => {
-    loadData();
-  };
-
+  const { loading, todoChanged, todos } = useTodoList();
   if (loading) {
     return (
       <View>
@@ -65,9 +54,7 @@ export const TodoList = () => {
         }}
       >
         <View style={{ flexGrow: 0, marginBottom: 20 }}>
-          <Text category="h3" style={{ marginBottom: 16, fontWeight: "bold" }}>
-            Completed Tasks
-          </Text>
+          <Header>Completed Tasks</Header>
           {todos.completed.length ? (
             todos.completed.map((todo) => (
               <Todo key={todo.id} {...todo} onChanged={todoChanged} />
@@ -77,9 +64,7 @@ export const TodoList = () => {
           )}
         </View>
         <View style={{ flex: 1, flexGrow: 2 }}>
-          <Text category="h3" style={{ marginBottom: 16, fontWeight: "bold" }}>
-            Pending Tasks
-          </Text>
+          <Header>Pending Tasks</Header>
           {todos.pending.length ? (
             todos.pending.map((todo) => (
               <Todo key={todo.id} {...todo} onChanged={todoChanged} />
